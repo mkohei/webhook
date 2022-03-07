@@ -40,6 +40,13 @@ class WebhookMessage
     protected $verify = false;
 
     /**
+     * Additional request options for the Guzzle HTTP client.
+     *
+     * @var array
+     */
+    protected $http = [];
+
+    /**
      * @param mixed $data
      *
      * @return static
@@ -126,6 +133,20 @@ class WebhookMessage
         return $this;
     }
 
+
+    /**
+     * Set additional request options for the Guzzle HTTP client.
+     *
+     * @param  array  $options
+     * @return $this
+     */
+    public function http(array $options)
+    {
+        $this->http = $options;
+
+        return $this;
+    }
+
     /**
      * @return array
      */
@@ -136,6 +157,7 @@ class WebhookMessage
             'data' => $this->data,
             'headers' => $this->headers,
             'verify' => $this->verify,
+            'http' => $this->http,
         ];
     }
 }
